@@ -63,7 +63,7 @@ export default function Home() {
           <h3 className="text-white font-bold">Skills</h3>
           <div className="flex flex-wrap gap-x-4 gap-y-8">
             {skills.map((s, index) => (
-              <div className="w-full lg:w-1/3">
+              <div className="w-full lg:w-1/3" key={index}>
                 <Technology name={s} key={index} />
               </div>
             ))}

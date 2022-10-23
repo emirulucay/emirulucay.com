@@ -16,7 +16,7 @@ export default function RightPanel({ heroRef, projectsRef, skillsRef }) {
       if (projectsRef.current.getBoundingClientRect().top < 200 && skillsRef.current.getBoundingClientRect().top > 0) {
         setActivated("projects");
       }
-      if (skillsRef.current.getBoundingClientRect().top < 400) {
+      if (skillsRef.current.getBoundingClientRect().top < 500) {
         setActivated("skills");
       }
     });

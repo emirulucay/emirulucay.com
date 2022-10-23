@@ -29,7 +29,7 @@ export default function Home() {
           <h1 className="text-white font-bold">Emir Uluçay</h1>
           <div className="max-w-[550px] flex flex-col gap-4 text-gray-300 leading-relaxed mt-4">
             <p>
-              I'm 18 years old self-taught designer and developer in Turkey. I love designing, coding and playing guitar. Also I’m improving
+              I'm 18 years old self-taught designer and developer in Turkey. I love designing, coding and playing guitar. Also I'm improving
               my english.
             </p>
             <p>I'm using React, Next.js and TypeScript to creating awesome things.</p>
@@ -54,9 +54,9 @@ export default function Home() {
               <Project name={p.name} url={p.url} text={p.text} key={index} technologies={p.technologies} />
             ))}
           </div>
-        </div>
-        <div className={cx("mt-12 text-gray-300 hidden", { "!block": projects.length === 1 })}>
-          <p>I have single project I can show you. But I have projects I’m working on now.</p>
+          <div className={cx("mt-8 text-gray-300 hidden", { "!block": projects.length === 1 })}>
+            <p>I have single project I can show you. But I have projects I'm working on now.</p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-12 mt-12 py-32 skills" ref={skillsRef}>

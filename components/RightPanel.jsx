@@ -4,23 +4,40 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 
-export default function RightPanel({ heroRef, projectsRef, skillsRef }) {
+export default function RightPanel({ heroRef, writingRef, projectsRef, skillsRef }) {
   const [activated, setActivated] = useState("");
 
   // aktif linki tespit ediyor
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
-      if (heroRef.current.getBoundingClientRect().top < 100 && projectsRef.current.getBoundingClientRect().top > 0) {
+      if (
+        heroRef.current.getBoundingClientRect().top < window.screen.availHeight / 2 &&
+        writingRef.current.getBoundingClientRect().top > 0
+      ) {
         setActivated("hero");
       }
-      if (projectsRef.current.getBoundingClientRect().top < 200 && skillsRef.current.getBoundingClientRect().top > 0) {
+      if (
+        writingRef.current.getBoundingClientRect().top < window.screen.availHeight / 2 &&
+        projectsRef.current.getBoundingClientRect().top > 0 &&
+        heroRef.current.getBoundingClientRect().top < 0
+      ) {
+        setActivated("writing");
+      }
+      if (
+        projectsRef.current.getBoundingClientRect().top < window.screen.availHeight / 2 &&
+        skillsRef.current.getBoundingClientRect().top > 0 &&
+        writingRef.current.getBoundingClientRect().top < 0
+      ) {
         setActivated("projects");
       }
-      if (skillsRef.current.getBoundingClientRect().top < 500) {
+      if (
+        skillsRef.current.getBoundingClientRect().top < window.screen.availHeight / 2 &&
+        projectsRef.current.getBoundingClientRect().top < 0
+      ) {
         setActivated("skills");
       }
     });
-  }, []);
+  }, [heroRef, writingRef, projectsRef, skillsRef]);
 
   // tıklanılan linke göre sayfanın ilgili kısmına gidiyor
   const handleClick = (id) => {
@@ -29,9 +46,12 @@ export default function RightPanel({ heroRef, projectsRef, skillsRef }) {
         heroRef.current.scrollIntoView();
         break;
       case 2:
-        projectsRef.current.scrollIntoView();
+        writingRef.current.scrollIntoView();
         break;
       case 3:
+        projectsRef.current.scrollIntoView();
+        break;
+      case 4:
         skillsRef.current.scrollIntoView();
         break;
     }
@@ -54,12 +74,19 @@ export default function RightPanel({ heroRef, projectsRef, skillsRef }) {
           <li
             onClick={() => handleClick(2)}
             className={cx("text-base cursor-pointer p-2 select-none hover:text-primary transition duration-300 rounded-md text-gray-200", {
+              "!text-primary bg-[#202020]": activated === "writing",
+            })}>
+            Writing
+          </li>
+          <li
+            onClick={() => handleClick(3)}
+            className={cx("text-base cursor-pointer p-2 select-none hover:text-primary transition duration-300 rounded-md text-gray-200", {
               "!text-primary bg-[#202020]": activated === "projects",
             })}>
             Projects
           </li>
           <li
-            onClick={() => handleClick(3)}
+            onClick={() => handleClick(4)}
             className={cx("text-base cursor-pointer p-2 select-none hover:text-primary transition duration-300 rounded-md text-gray-200", {
               "!text-primary bg-[#202020]": activated === "skills",
             })}>

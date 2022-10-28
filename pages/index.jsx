@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import Project from "components/Project";
 import { projects } from "data/projects";
 import { External } from "data/icons";
@@ -8,14 +9,18 @@ import { useRef } from "react";
 import cx from "classnames";
 import skills from "data/skills";
 import Technology from "components/Technology";
+import { getSortedPostsData } from "lib/posts";
+import Date from "components/date";
 
-export default function Home() {
+export default function Home({ allPostsData }) {
   const heroRef = useRef(null);
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
+  const writingRef = useRef(null);
 
   useEffect(() => {
     heroRef.current.classList.add("delay");
+    writingRef.current.classList.add("delay");
     projectsRef.current.classList.add("delay");
     skillsRef.current.classList.add("delay");
   }, []);
@@ -46,8 +51,33 @@ export default function Home() {
           </div>
         </div>
 
+        {/* writings section */}
+        <div className="flex flex-col py-8 mt-40 gap-8 writing" ref={writingRef}>
+          <div className="flex flex-col gap-4">
+            <h3 className="text-white font-bold">Writing</h3>
+            <p className="text-gray-300 max-w-[550px]">
+              Sometimes I'm writing about my days or weeks. I hope these writings help me to improve my english.
+            </p>
+          </div>
+          <ul className="flex flex-col gap-4">
+            {allPostsData.map(({ id, date, title }) => (
+              <li key={id}>
+                <article>
+                  <Link href={`/writing/${id}`}>
+                    <a className="text-primary transition duration-300 hover:text-primary/80">{title}</a>
+                  </Link>
+                  <br />
+                  <small className=" text-gray-300">
+                    <Date dateString={date} />
+                  </small>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* projects section */}
-        <div className="mt-20 pt-32 flex flex-col gap-12 projects" ref={projectsRef}>
+        <div className="mt-40 pt-8 flex flex-col gap-12 projects" ref={projectsRef}>
           <h2 className="text-white font-bold">Projects</h2>
           <div className="flex flex-col gap-16">
             {projects.map((p, index) => (
@@ -59,7 +89,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-12 mt-12 py-32 skills" ref={skillsRef}>
+        {/* Skills Section */}
+        <div className="flex flex-col gap-12 mt-28 py-20 skills" ref={skillsRef}>
           <h3 className="text-white font-bold">Skills</h3>
           <div className="flex flex-wrap gap-x-4 gap-y-8">
             {skills.map((s, index) => (
@@ -80,8 +111,17 @@ export default function Home() {
       </div>
       {/* right section */}
       <div className="hidden lg:block">
-        <RightPanel heroRef={heroRef} projectsRef={projectsRef} skillsRef={skillsRef} />
+        <RightPanel heroRef={heroRef} projectsRef={projectsRef} skillsRef={skillsRef} writingRef={writingRef} />
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
 }

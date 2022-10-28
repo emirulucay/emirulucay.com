@@ -9,11 +9,6 @@ export default function Post({ postData }) {
     <div className="container mx-auto flex justify-between selection:bg-primary">
       <Head>
         <title>{postData.title}</title>
-        <meta
-          name="description"
-          content="This is a my writing. Sometimes I'm writing things about of my days or weeks."
-          key="description"
-        />
       </Head>
       <div className="flex flex-col gap-4 pt-20 max-w-[550px]">
         <div className="">

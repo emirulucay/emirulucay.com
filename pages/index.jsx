@@ -28,7 +28,7 @@ export default function Home({ allPostsData }) {
   return (
     <div className="container flex justify-between mx-auto pt-32 selection:bg-primary relative">
       <Head>
-        <title>Emir Uluçay — Self-taught designer, developer.</title>
+        <title>Emir Uluçay ⋅ Self-Taught Designer and Developer.</title>
       </Head>
       {/* left section */}
       <div className="flex flex-col">

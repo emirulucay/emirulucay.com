@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   const meta = {
-    title: "Emir Uluçay ⋅ Self-Taught Designer and Developer.",
+    title: "Emir Uluçay — Self taught designer and developer.",
     description: "18 years old self-taught designer and developer.",
     url: "https://emirulucay.com",
   };

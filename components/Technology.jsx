@@ -1,5 +1,5 @@
 import React from "react";
-import { SiNextdotjs, SiTailwindcss, SiReact, SiTypescript } from "react-icons/si";
+import { SiNextdotjs, SiTailwindcss, SiReact, SiTypescript, SiBootstrap } from "react-icons/si";
 
 export default function Technology({ name }) {
   // ikonu dinamikleştiriyor
@@ -16,6 +16,9 @@ export default function Technology({ name }) {
         break;
       case "TypeScript":
         return <SiTypescript />;
+        break;
+      case "Bootstrap":
+        return <SiBootstrap />;
         break;
     }
   };

@@ -4,13 +4,14 @@ export default function Document() {
   const meta = {
     title: "Emir Uluçay — Self taught designer and developer.",
     description: "18 years old self-taught designer and developer.",
-    url: "https://emirulucay.com",
+    url: "https://www.emirulucay.com/",
   };
   return (
     <Html>
       <Head>
         <link rel="preload" href="/fonts/Inter.var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <meta charSet="utf-8" />
+        <meta lang="en" />
         <meta name="robots" content="follow, index" />
 
         <link href="/icons/site.webmanifest" rel="manifest" />

@@ -3,14 +3,15 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   const meta = {
     title: "Emir Uluçay — Self taught designer and developer.",
-    description: "18 years old self-taught designer and developer.",
-    url: "https://www.emirulucay.com/",
+    description: "18 years old self taught designer and developer.",
+    url: "https://emirulucay.com/",
   };
   return (
     <Html>
       <Head>
         <link rel="preload" href="/fonts/Inter.var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <meta charSet="utf-8" />
+        <meta http-equiv="Content-Type" content={`${meta.description}; charset=UTF-8`} />
         <meta lang="en" />
         <meta name="robots" content="follow, index" />
 
@@ -36,7 +37,6 @@ export default function Document() {
         <meta property="og:description" content={meta.description} />
         <meta property="og:url" content={meta.url} />
 
-        <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <link rel="canonical" href={meta.url} />
       </Head>
